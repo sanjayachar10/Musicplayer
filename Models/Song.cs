@@ -15,7 +15,7 @@ namespace Musicplayer.Models
         [Required]
         public string Language { get; set; }
         public string Duration { get; set; }
-        public DateTime UploadedDAte { get; set; }
+        public DateTime UploadedDate { get; set; }
         public int ArtistId { get; set; }
         public int? AlbumId { get; set; }
 
