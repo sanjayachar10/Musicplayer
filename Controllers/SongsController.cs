@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Musicplayer.Data;
 using Musicplayer.Models;
 using System;
@@ -28,6 +29,20 @@ namespace Musicplayer.Controllers
             await _dbContext.SaveChangesAsync();
             return StatusCode(StatusCodes.Status201Created);
         }
+        [HttpGet]
+        public async Task<IActionResult> GetAllSongs()
+        {
+            var songs = await (from song in _dbContext.Songs
+                                select new
+                                {
+                                    Id = song.Id,
+                                   Title=song.Title,
+                                   Duration=song.Duration,
+
+                                }).ToListAsync();
+            return Ok(songs);
+        }
+
 
     }
 }
