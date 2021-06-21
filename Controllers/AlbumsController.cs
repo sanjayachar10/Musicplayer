@@ -27,15 +27,18 @@ namespace Musicplayer.Controllers
             return StatusCode(StatusCodes.Status201Created);
         }
         [HttpGet]
-        public async Task<IActionResult> GetAlbums()
+        public async Task<IActionResult> GetAlbums(int? pageNumber, int? pageSize)
         {
+            int currentPageNumber = pageNumber ?? 1;
+            int currentPageSize = pageSize ?? 5;
             var albums = await (from album in _dbContext.Albums
                                 select new
                                  {
                                      Id = album.Id,
                                      Name = album.Name,
                                  }).ToListAsync();
-            return Ok(albums);
+            return Ok(albums.Skip((currentPageNumber - 1) * currentPageSize).Take
+                (currentPageSize));
         }
 
 
