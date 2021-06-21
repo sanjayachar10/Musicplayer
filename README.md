@@ -1,2 +1,2 @@
 # Musicplayer
- This Api allows data to enter songs,artist,album and also helps to search with paging and all the CRUD oparation
+ This Api allows to enter songs,artist,album data and also helps to search with paging and performs all the CRUD oparation
