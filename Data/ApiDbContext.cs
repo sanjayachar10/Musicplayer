@@ -18,24 +18,14 @@ namespace Musicplayer.Data
 
         public DbSet<Song> Songs
         { get; set; }
+        public DbSet<Artist> Artists
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
-            modelBuilder.Entity<Song>().HasData(
-                new Song
-                {
-                    Id=1,
-                    Title="sanjay", 
-                    Language="English"
-                },
-                new Song
-                {
-                    Id = 2,
-                    Title = "sany",
-                    Language = "Enish"
-                }
+        { get; set; }
+        public DbSet<Album> Albums
 
-                );
-        }
+        { get; set; }
+
+
+       
     }
 }
