@@ -18,7 +18,7 @@ namespace Musicplayer.Models
         public DateTime UploadedDate { get; set; }
         public int ArtistId { get; set; }
         public int? AlbumId { get; set; }
-
+        public bool IsFeatured { get; internal set; }
     }
 
 }
