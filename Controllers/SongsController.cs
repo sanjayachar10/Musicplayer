@@ -42,6 +42,51 @@ namespace Musicplayer.Controllers
                                 }).ToListAsync();
             return Ok(songs);
         }
+        [HttpGet("[action]")]
+        public async Task<IActionResult> FeaturedSongs()
+        {
+            var songs = await (from song in _dbContext.Songs
+                               where song.IsFeatured == true
+
+                               select new
+                               {
+                                   Id = song.Id,
+                                   Title = song.Title,
+                                   Duration = song.Duration,
+
+                               }).ToListAsync();
+            return Ok(songs);
+        }
+        [HttpGet("[action]")]
+        public async Task<IActionResult> NewSongs()
+        {
+            var songs = await (from song in _dbContext.Songs
+                              orderby song.UploadedDate descending
+
+                               select new
+                               {
+                                   Id = song.Id,
+                                   Title = song.Title,
+                                   Duration = song.Duration,
+
+                               }).ToListAsync();
+            return Ok(songs);
+        }
+        [HttpGet("[action]")]
+        public async Task<IActionResult> SearchSongs(string query)
+        {
+            var songs = await (from song in _dbContext.Songs
+                               where song.Title.StartsWith(query)
+
+                               select new
+                               {
+                                   Id = song.Id,
+                                   Title = song.Title,
+                                   Duration = song.Duration,
+
+                               }).Take(10).ToListAsync();
+            return Ok(songs);
+        }
 
 
     }
